@@ -21,10 +21,12 @@
 body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 'EB Garamond',Georgia,serif}
 .roll{max-width:760px;margin:0 auto;padding:2rem 1rem 4rem}
 .sheet{background:var(--paper);border:1px solid var(--rule);padding:2rem 1.5rem;margin:0 0 2rem}
+.view{display:none}
+.view.active{display:block}
 .mono{font-family:'IBM Plex Mono',monospace}
 .seal{display:block;margin:0 auto .5rem;color:var(--ink)}
 .brand{text-align:center;margin-bottom:1.25rem}
-.brand .u{font:500 28px/1.15 'EB Garamond',serif}
+.brand .u{font:500 28px/1.15 'EB Garamond',Georgia,serif}
 .brand .m{font-style:italic;color:var(--muted)}
 .brand .s{font:13px 'IBM Plex Mono',monospace;color:var(--muted);margin-top:4px}
 .lockup{display:flex;align-items:center;gap:14px;text-align:left}
@@ -35,6 +37,8 @@ h2{font:600 15px 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:u
 .nav a{display:flex;gap:6px;color:var(--ink);text-decoration:none;padding:3px 0}
 .nav a span.dots{flex:1;border-bottom:1px dotted var(--ink);margin-bottom:6px}
 .nav a:hover{color:var(--red)}
+.back{font:13px 'IBM Plex Mono',monospace;text-align:center;margin:1.75rem 0 0}
+.back a{color:var(--ink)}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 #terms-body{position:relative}
 .clause{cursor:none;padding:.35rem .5rem;margin:0 0 .35rem}
@@ -60,8 +64,8 @@ textarea{width:100%;font:15px 'IBM Plex Mono',monospace;background:#efece5;color
 .note{font-size:15px;color:var(--muted);font-style:italic}
 .receipt{width:300px;margin:2rem auto 0;background:var(--paper);border:1px solid var(--rule);padding:16px 14px}
 .rc-head{text-align:center;margin-bottom:8px}
-.rc-head .u{font:500 21px/1.2 'EB Garamond',serif}
-.rc-head .m{font:italic 14px 'EB Garamond',serif;color:var(--muted)}
+.rc-head .u{font:500 21px/1.2 'EB Garamond',Georgia,serif}
+.rc-head .m{font:italic 14px 'EB Garamond',Georgia,serif;color:var(--muted)}
 .rc-body{position:relative}
 .receipt pre{margin:0;font:13px/20px 'IBM Plex Mono',monospace;min-height:400px}
 .stamp{position:absolute;left:50%;top:212px;border:3px solid var(--red);outline:1px solid var(--red);outline-offset:3px;color:var(--red);font:600 17px 'IBM Plex Mono',monospace;letter-spacing:.08em;padding:5px 12px;white-space:nowrap;opacity:0;transform:translateX(calc(-50% + var(--x,0px))) rotate(var(--r,-14deg)) scale(1.4);transition:transform .12s ease-in,opacity .12s;mix-blend-mode:multiply}
@@ -81,15 +85,15 @@ footer a{color:var(--ink)}
 </head>
 <body>
 
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs>
     <symbol id="seal" viewBox="0 0 200 200">
       <circle cx="100" cy="100" r="96" fill="none" stroke="currentColor" stroke-width="4"/>
       <circle cx="100" cy="100" r="68" fill="none" stroke="currentColor" stroke-width="2"/>
       <path id="arcTop" d="M 22 100 A 78 78 0 0 1 178 100" fill="none"/>
       <path id="arcBot" d="M 14 100 A 86 86 0 0 0 186 100" fill="none"/>
-      <text font-family="'EB Garamond',serif" font-size="15" font-weight="500" letter-spacing="3" fill="currentColor"><textPath href="#arcTop" startOffset="50%" text-anchor="middle">TACIT UNIVERSITY</textPath></text>
-      <text font-family="'EB Garamond',serif" font-size="11.5" letter-spacing="1.2" fill="currentColor"><textPath href="#arcBot" startOffset="50%" text-anchor="middle">QUI TACET CONSENTIRE VIDETUR</textPath></text>
+      <text font-family="'EB Garamond',Georgia,serif" font-size="15" font-weight="500" letter-spacing="3" fill="currentColor"><textPath href="#arcTop" xlink:href="#arcTop" startOffset="50%" text-anchor="middle">TACIT UNIVERSITY</textPath></text>
+      <text font-family="'EB Garamond',Georgia,serif" font-size="11.5" letter-spacing="1.2" fill="currentColor"><textPath href="#arcBot" xlink:href="#arcBot" startOffset="50%" text-anchor="middle">QUI TACET CONSENTIRE VIDETUR</textPath></text>
       <circle cx="15" cy="100" r="2.5" fill="currentColor"/>
       <circle cx="185" cy="100" r="2.5" fill="currentColor"/>
       <path d="M 72 62 H 128 V 104 Q 128 136 100 150 Q 72 136 72 104 Z" fill="none" stroke="currentColor" stroke-width="3"/>
@@ -97,23 +101,23 @@ footer a{color:var(--ink)}
       <circle cx="112" cy="86" r="5" fill="currentColor"/>
       <path d="M 112 95 C 109 102 108.5 106 112 107.5 C 115.5 106 115 102 112 95 Z" fill="currentColor"/>
       <path d="M 83 128 L 100 115 L 117 128" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="miter"/>
-      <text x="54" y="108" font-family="'EB Garamond',serif" font-size="13" text-anchor="middle" fill="currentColor">19</text>
-      <text x="146" y="108" font-family="'EB Garamond',serif" font-size="13" text-anchor="middle" fill="currentColor">72</text>
+      <text x="54" y="108" font-family="'EB Garamond',Georgia,serif" font-size="13" text-anchor="middle" fill="currentColor">19</text>
+      <text x="146" y="108" font-family="'EB Garamond',Georgia,serif" font-size="13" text-anchor="middle" fill="currentColor">72</text>
     </symbol>
   </defs>
 </svg>
 
 <main class="roll">
 
-<header class="sheet">
+<header id="index" class="sheet view" data-view="index">
   <div class="brand">
-    <svg class="seal" width="120" height="120" viewBox="0 0 200 200" role="img" aria-label="Tacit University seal"><use href="#seal"/></svg>
+    <svg class="seal" width="120" height="120" viewBox="0 0 200 200" role="img" aria-label="Tacit University seal"><use href="#seal" xlink:href="#seal"/></svg>
     <div class="u">Tacit University</div>
     <div class="m">Qui tacet consentire videtur</div>
   </div>
   <h1>TUITION RECEIVED.<br>SAFETY NOT INCLUDED.</h1>
   <nav class="nav" aria-label="Sections">
-    <a href="#terms">01 TERMS OF SERVICE<span class="dots"></span>REQ</a>
+    <a href="#terms">01 TERMS OF SERVICE<span class="dots"></span><span id="st-terms">REQ</span></a>
     <a href="#invoice">02 INVOICE<span class="dots"></span>OUTSTANDING</a>
     <a href="#statement">03 PRESS STATEMENT<span class="dots"></span>ISSUED</a>
     <a href="#survey">04 CUSTOMER SURVEY<span class="dots"></span>OPEN</a>
@@ -121,26 +125,26 @@ footer a{color:var(--ink)}
   </nav>
 </header>
 
-<section id="terms" class="sheet">
+<section id="terms" class="sheet view" data-view="terms">
   <div class="brand">
-    <svg class="seal" width="64" height="64" viewBox="0 0 200 200" aria-hidden="true"><use href="#seal"/></svg>
+    <svg class="seal" width="64" height="64" viewBox="0 0 200 200" aria-hidden="true"><use href="#seal" xlink:href="#seal"/></svg>
     <div class="u">Tacit University</div>
     <div class="m">Qui tacet consentire videtur</div>
     <div class="s">Terms of Service · Last updated: non-substantially</div>
   </div>
+  <p id="gate-note" class="note center" hidden>You must agree to the Terms of Service before continuing.</p>
   <div id="terms-body">
     <div id="clauses"></div>
     <div id="lens" hidden aria-hidden="true"><div id="lens-text"></div></div>
   </div>
   <p id="terms-end" class="center" style="margin-top:1.5rem"><button id="agree" disabled>I agree</button></p>
+  <p class="back"><a href="#index">← Return to index</a></p>
 </section>
 
-<div id="gated" hidden>
-
-<section id="invoice" class="sheet">
+<section id="invoice" class="sheet view" data-view="invoice">
   <p class="mono" style="text-align:right;font-size:13px;margin:0 0 .75rem"><b>Invoice Print Date:</b> 28/09/2026</p>
   <div class="brand lockup">
-    <svg class="seal" width="72" height="72" viewBox="0 0 200 200" aria-hidden="true"><use href="#seal"/></svg>
+    <svg class="seal" width="72" height="72" viewBox="0 0 200 200" aria-hidden="true"><use href="#seal" xlink:href="#seal"/></svg>
     <div>
       <div class="u">Tacit University</div>
       <div class="s" style="margin-top:0">Finance &amp; Administration</div>
@@ -185,11 +189,12 @@ footer a{color:var(--ink)}
     <tr><th style="width:40%">Outstanding Balance</th><td style="font-weight:600">Safety not included.</td></tr>
   </table>
   </div>
+  <p class="back"><a href="#index">← Return to index</a></p>
 </section>
 
-<section id="statement" class="sheet statement">
+<section id="statement" class="sheet statement view" data-view="statement">
   <div class="brand">
-    <svg class="seal" width="64" height="64" viewBox="0 0 200 200" aria-hidden="true"><use href="#seal"/></svg>
+    <svg class="seal" width="64" height="64" viewBox="0 0 200 200" aria-hidden="true"><use href="#seal" xlink:href="#seal"/></svg>
     <div class="u">Tacit University</div>
     <div class="m">Qui tacet consentire videtur</div>
     <div class="s">University Statements</div>
@@ -203,11 +208,12 @@ footer a{color:var(--ink)}
   <p>Any suggestion that TU’s response was insufficient is itself insufficient. Criticism of the university harms survivors. Survivors are best supported by silence, which the university is pleased to model.</p>
   <p>We take this extremely seriously, as defined in our Terms of Service.</p>
   <p class="sig">Vice President for University Reputation,<br>on behalf of a designee, a dog, or a postage stamp</p>
+  <p class="back"><a href="#index">← Return to index</a></p>
 </section>
 
-<section id="survey" class="sheet">
+<section id="survey" class="sheet view" data-view="survey">
   <div class="brand">
-    <svg class="seal" width="64" height="64" viewBox="0 0 200 200" aria-hidden="true"><use href="#seal"/></svg>
+    <svg class="seal" width="64" height="64" viewBox="0 0 200 200" aria-hidden="true"><use href="#seal" xlink:href="#seal"/></svg>
     <div class="u">Tacit University</div>
     <div class="m">Qui tacet consentire videtur</div>
     <div class="s">Customer Experience</div>
@@ -257,7 +263,7 @@ footer a{color:var(--ink)}
   </form>
   <div id="receipt" class="receipt" hidden aria-live="polite">
     <div class="rc-head">
-      <svg class="seal" width="64" height="64" viewBox="0 0 200 200" aria-hidden="true"><use href="#seal"/></svg>
+      <svg class="seal" width="64" height="64" viewBox="0 0 200 200" aria-hidden="true"><use href="#seal" xlink:href="#seal"/></svg>
       <div class="u">Tacit University</div>
       <div class="m">Qui tacet consentire videtur</div>
     </div>
@@ -266,9 +272,10 @@ footer a{color:var(--ink)}
       <div class="stamp" aria-hidden="true">SAFETY NOT INCLUDED</div>
     </div>
   </div>
+  <p class="back"><a href="#index">← Return to index</a></p>
 </section>
 
-<section id="receipts" class="sheet">
+<section id="receipts" class="sheet view" data-view="receipts">
   <h2>05 Receipts issued</h2>
   <div class="counters">
     <div>Receipts issued<b id="c-issued">526</b></div>
@@ -276,11 +283,10 @@ footer a{color:var(--ink)}
     <div>Remedies issued<b>0</b></div>
   </div>
   <div id="field" role="img" aria-label="A field of receipts. The printed text fades over time; the red stamps remain."></div>
+  <p class="back"><a href="#index">← Return to index</a></p>
 </section>
 
-</div>
-
-<footer class="sheet">
+<footer id="about" class="sheet">
   <h2>About this work</h2>
   <p>This work is entered as satire, but it identifies the madness of the ways campuses across North America respond to survivors.</p>
   <p>Tacit University does not exist. Its motto, <i>Qui tacet consentire videtur</i>, is an old legal maxim: “whoever is silent is taken to consent.” Affirmative-consent standards were written to reject exactly that idea. The magnifier reveals the fine print in Tacit University’s sexual misconduct policy.</p>
@@ -299,6 +305,7 @@ footer a{color:var(--ink)}
 const LAUNCH = '2026-10-01';   // date the 526 baseline receipts are issued; set to go-live date
 const BASELINE = 526;
 const FADE_DAYS = 122;         // one term, about four months
+const RETURN_DELAY = 3500;     // ms after the stamp lands before returning to the index
 
 const TERMS = [
 ["By enrolling, you agree to a safe, inclusive, and respectful environment for learning, living, and working.",
@@ -370,15 +377,15 @@ tb.addEventListener('pointerdown', e=>{
 })(performance.now());
 
 // Clickwrap gate
-const agree = $('#agree'), gated = $('#gated');
+const agree = $('#agree');
 let agreed = sessionStorage.getItem('tacit-agreed')==='1';
-function unlock(){ gated.hidden = false; agree.textContent = 'Agreed'; agree.disabled = true; }
-if(agreed) unlock();
+function markAgreed(){ agree.textContent = 'Agreed'; agree.disabled = true; $('#st-terms').textContent = 'AGREED'; }
+if(agreed) markAgreed();
 new IntersectionObserver(es=>{ if(!agreed && es.some(e=>e.isIntersecting)) agree.disabled = false; }).observe($('#terms-end'));
-agree.addEventListener('click', ()=>{ agreed = true; sessionStorage.setItem('tacit-agreed','1'); unlock(); renderField(); location.hash = '#invoice'; });
-document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click', e=>{
-  if(gated.hidden && a.getAttribute('href')!=='#terms'){ e.preventDefault(); $('#terms').scrollIntoView({behavior:'smooth'}); }
-}));
+agree.addEventListener('click', ()=>{
+  agreed = true; sessionStorage.setItem('tacit-agreed','1'); markAgreed();
+  location.hash = '#index';
+});
 
 // Receipts (kept only in this visitor's browser)
 const W = 29, rule = '-'.repeat(W);
@@ -421,6 +428,7 @@ async function renderField(){
   $('#c-legible').textContent = legible.toLocaleString();
   $('#nav-count').textContent = items.length.toLocaleString();
 }
+let returnTimer = null;
 function printReceipt(n){
   const box = $('#receipt'), pre = box.querySelector('pre'), st = box.querySelector('.stamp');
   box.hidden = false; pre.textContent = ''; st.classList.remove('on');
@@ -432,6 +440,7 @@ function printReceipt(n){
       st.style.setProperty('--r', (-10-Math.random()*8).toFixed(1)+'deg');
       st.style.setProperty('--x', Math.round(Math.random()*16-8)+'px');
       st.classList.add('on'); renderField();
+      returnTimer = setTimeout(()=>{ location.hash = '#index'; }, RETURN_DELAY);
     }, 450);
   })();
 }
@@ -439,7 +448,6 @@ $('#survey-form').addEventListener('submit', async e=>{
   e.preventDefault();
   const b = $('#submit'); b.disabled = true;
   const n = await issueNumber(); printReceipt(n);
-  setTimeout(()=>{ b.disabled = false; }, 2500);
 });
 
 // Q5: No cannot be entered
@@ -447,7 +455,23 @@ $('#q6no').addEventListener('change', ()=>{
   setTimeout(()=>{ $('#q6yes').checked = true; }, 250);
 });
 
+// One view at a time
+const VIEWS = ['index','terms','invoice','statement','survey','receipts'];
+function show(v){
+  if(!VIEWS.includes(v)) v = 'index';
+  let redirected = false;
+  if(!agreed && v!=='index' && v!=='terms'){ v = 'terms'; redirected = true; }
+  document.querySelectorAll('.view').forEach(el=>el.classList.toggle('active', el.dataset.view===v));
+  $('#about').hidden = v!=='index';
+  $('#gate-note').hidden = !redirected;
+  hideLens();
+  if(v==='survey'){ clearTimeout(returnTimer); $('#receipt').hidden = true; $('#submit').disabled = false; }
+  if(v==='receipts') renderField();
+  window.scrollTo(0,0);
+}
+window.addEventListener('hashchange', ()=>show(location.hash.slice(1)));
 renderField();
+show(location.hash.slice(1));
 </script>
 </body>
 </html>
