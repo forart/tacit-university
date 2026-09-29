@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tuition received. Safety not included.</title>
+<!--
+  Tuition received. Safety not included.
+  Monique Tschofen, 2026.
+  Tacit University is fictional. The fine print recomposes vocabulary from a
+  university sexual misconduct policy, interwoven with the artist's interventions.
+  Satire. Stores no personal information.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#faf8f3;--ink:#1d1d1b;--muted:#6b6862;--red:#b3261e;--bg:#e8e5de;--rule:#d9d4c9;--maroon:#5c2230;--tan:#e3d8bd}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 'EB Garamond',Georgia,serif}
+.roll{max-width:760px;margin:0 auto;padding:2rem 1rem 4rem}
+.sheet{background:var(--paper);border:1px solid var(--rule);padding:2rem 1.5rem;margin:0 0 2rem}
+.mono{font-family:'IBM Plex Mono',monospace}
+.brand{text-align:center;margin-bottom:1.25rem}
+.brand .u{font:600 18px 'IBM Plex Mono',monospace;letter-spacing:.12em}
+.brand .m{font-style:italic;color:var(--muted)}
+.brand .s{font:13px 'IBM Plex Mono',monospace;color:var(--muted)}
+h1{font:600 20px/1.4 'IBM Plex Mono',monospace;text-align:center;margin:1rem 0}
+h2{font:600 15px 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px dashed var(--ink);padding-bottom:.4rem;margin:0 0 1.25rem}
+.nav{max-width:420px;margin:0 auto;font:14px 'IBM Plex Mono',monospace}
+.nav a{display:flex;gap:6px;color:var(--ink);text-decoration:none;padding:3px 0}
+.nav a span.dots{flex:1;border-bottom:1px dotted var(--ink);margin-bottom:6px}
+.nav a:hover{color:var(--red)}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+#terms-body{position:relative}
+.clause{cursor:none;padding:.35rem .5rem;margin:0 0 .35rem}
+.clause .n{font:600 14px 'IBM Plex Mono',monospace;margin-right:.3rem}
+#lens{position:absolute;border-radius:50%;border:3px solid #3a3a38;background:var(--paper);pointer-events:none;overflow:hidden;z-index:5}
+#lens-text{position:absolute;left:15%;right:15%;text-align:center;font:18px/1.5 'EB Garamond',serif}
+button{font:600 14px 'IBM Plex Mono',monospace;background:var(--ink);color:var(--paper);border:0;padding:.7rem 1.4rem;cursor:pointer}
+button:disabled{background:#9d9a93;cursor:not-allowed}
+.center{text-align:center}
+.wrap-x{overflow-x:auto}
+table.inv{width:100%;border-collapse:collapse;font:12.5px 'IBM Plex Mono',monospace;margin:0 0 1.2rem;min-width:560px}
+table.inv th{background:var(--maroon);color:var(--paper);font-weight:600;text-align:left;padding:5px 7px}
+table.inv td{border:1px solid var(--rule);padding:5px 7px}
+table.inv tr.sub td{background:var(--tan);font-weight:600}
+.inv-h{font:600 14px 'IBM Plex Mono',monospace;margin:.6rem 0 .3rem}
+.statement p{margin:0 0 1rem}
+.sig{font-style:italic;color:var(--muted)}
+fieldset{border:0;border-top:1px dashed var(--rule);padding:1rem 0 .5rem;margin:0}
+legend{font-weight:600;padding:0}
+label{display:block;margin:.2rem 0}
+textarea{width:100%;font:15px 'IBM Plex Mono',monospace;background:#efece5;color:var(--muted);border:1px solid var(--rule);padding:.6rem;resize:none}
+.note{font-size:15px;color:var(--muted);font-style:italic}
+.receipt{position:relative;width:300px;margin:2rem auto 0;background:var(--paper);border:1px solid var(--rule);padding:16px 14px}
+.receipt pre{margin:0;font:13px/20px 'IBM Plex Mono',monospace;min-height:460px}
+.stamp{position:absolute;left:50%;top:288px;border:3px solid var(--red);outline:1px solid var(--red);outline-offset:3px;color:var(--red);font:600 17px 'IBM Plex Mono',monospace;letter-spacing:.08em;padding:5px 12px;white-space:nowrap;opacity:0;transform:translateX(calc(-50% + var(--x,0px))) rotate(var(--r,-14deg)) scale(1.4);transition:transform .12s ease-in,opacity .12s;mix-blend-mode:multiply}
+.stamp.on{opacity:.88;transform:translateX(calc(-50% + var(--x,0px))) rotate(var(--r,-14deg)) scale(1)}
+.counters{display:flex;gap:1rem;flex-wrap:wrap;font:13px 'IBM Plex Mono',monospace;margin-bottom:1rem}
+.counters div{flex:1;min-width:140px;border:1px solid var(--rule);padding:.6rem .8rem}
+.counters b{display:block;font-size:22px}
+#field{display:flex;flex-wrap:wrap;gap:3px}
+.tile{position:relative;width:16px;height:22px;background:var(--paper);border:.5px solid #cfcac0;overflow:hidden}
+.tile i{position:absolute;left:2px;right:2px;height:1px;background:var(--ink);opacity:var(--a)}
+.tile i:nth-child(1){top:4px}.tile i:nth-child(2){top:8px;right:6px}.tile i:nth-child(3){top:13px}.tile i:nth-child(4){top:17px;right:5px}
+.tile b{position:absolute;left:-2px;right:-2px;top:9px;height:3px;background:var(--red);transform:rotate(-24deg);opacity:.8}
+.tile.mine{outline:1.5px solid var(--red);outline-offset:1px}
+footer{font-size:15px}
+footer a{color:var(--ink)}
+</style>
+</head>
+<body>
+<main class="roll">
+
+<header class="sheet">
+  <div class="brand">
+    <div class="u">TACIT UNIVERSITY</div>
+    <div class="m">Qui tacet consentire videtur</div>
+  </div>
+  <h1>TUITION RECEIVED.<br>SAFETY NOT INCLUDED.</h1>
+  <nav class="nav" aria-label="Sections">
+    <a href="#terms">01 TERMS OF SERVICE<span class="dots"></span>REQ</a>
+    <a href="#invoice">02 INVOICE<span class="dots"></span>OUTSTANDING</a>
+    <a href="#statement">03 PRESS STATEMENT<span class="dots"></span>ISSUED</a>
+    <a href="#survey">04 CUSTOMER SURVEY<span class="dots"></span>OPEN</a>
+    <a href="#receipts">05 RECEIPTS ISSUED<span class="dots"></span><span id="nav-count">526</span></a>
+  </nav>
+</header>
+
+<section id="terms" class="sheet">
+  <div class="brand">
+    <div class="u">TACIT UNIVERSITY</div>
+    <div class="m">Qui tacet consentire videtur</div>
+    <div class="s">Terms of Service · Last updated: non-substantially</div>
+  </div>
+  <div id="terms-body">
+    <div id="clauses"></div>
+    <div id="lens" hidden aria-hidden="true"><div id="lens-text"></div></div>
+  </div>
+  <p id="terms-end" class="center" style="margin-top:1.5rem"><button id="agree" disabled>I agree</button></p>
+</section>
+
+<div id="gated" hidden>
+
+<section id="invoice" class="sheet">
+  <p class="mono" style="text-align:right;font-size:13px;margin:0"><b>Invoice Print Date:</b> 28/09/2026</p>
+  <div class="brand" style="text-align:left">
+    <div class="u">TACIT UNIVERSITY</div>
+    <div class="s">Finance &amp; Administration · Office of Civil Rights</div>
+    <div class="m">Est. 1972 · Qui tacet consentire videtur</div>
+  </div>
+  <div class="wrap-x">
+  <table class="inv">
+    <tr><th>Name</th><th>Customer ID</th><th>Career</th><th>Residency</th><th>Major</th></tr>
+    <tr><td>████████</td><td>████████</td><td>Undergraduate</td><td>Environment, if known</td><td>Majority (52.6%)</td></tr>
+  </table>
+  <table class="inv">
+    <tr><th>Term</th><th>Enrollment Status</th><th>Outstanding Balance</th></tr>
+    <tr><td>2024 Fall</td><td>WITHDRAWN</td><td>PENDING LEGAL PROCESS</td></tr>
+  </table>
+  <div class="inv-h">Tuition</div>
+  <table class="inv">
+    <tr><th>Description</th><th>Course ID</th><th>Credits</th><th>Tuition</th><th>Out of State</th><th>Other Fees</th><th>Total</th></tr>
+    <tr><td>Telling Your Story</td><td>TYS 1001</td><td>3</td><td>$526.00</td><td>$0.00</td><td>$0.00</td><td>$526.00</td></tr>
+    <tr><td>Describing the Incident (repeat as practicable)</td><td>HRG 1212</td><td>12</td><td>$526.00</td><td>$0.00</td><td>$0.00</td><td>$6,312.00</td></tr>
+    <tr><td>More Likely Than Not</td><td>PRE 5050</td><td>3</td><td>$526.00</td><td>$0.00</td><td>$0.00</td><td>$526.00</td></tr>
+    <tr><td>Bring Your Own Dignity</td><td>BYO 0000</td><td>0</td><td>$0.00</td><td>$0.00</td><td>$0.00</td><td>$0.00</td></tr>
+    <tr><td>Student Facility Use: Environment, incl. frat houses</td><td></td><td>0</td><td>$20.00</td><td>$0.00</td><td>$0.00</td><td>$20.00</td></tr>
+    <tr class="sub"><td colspan="2" style="text-align:right">Total Credits</td><td>18</td><td colspan="3" style="text-align:right">Total Assessed</td><td>$7,384.00</td></tr>
+  </table>
+  <div class="inv-h">Charges</div>
+  <table class="inv">
+    <tr><th>Description</th><th>Reference Number</th><th>Due Date</th><th>Charge Amount</th><th>Outstanding Balance</th></tr>
+    <tr><td>2024 Fall Tuition</td><td></td><td>25/10/2024</td><td>$7,384.00</td><td>$7,384.00</td></tr>
+    <tr><td>Night terrors</td><td></td><td>Nightly</td><td>Recurring</td><td>Recurring</td></tr>
+    <tr><td>Flashbacks</td><td></td><td>Without notice</td><td>Recurring</td><td>Recurring</td></tr>
+    <tr><td>Drug use, involuntary</td><td>Policy §7.1</td><td>Held against you</td><td>—</td><td>—</td></tr>
+    <tr class="sub"><td colspan="3" style="text-align:right">Total</td><td>$7,384.00</td><td>Recurring</td></tr>
+  </table>
+  <div class="inv-h">Payments</div>
+  <table class="inv">
+    <tr><th>Description</th><th>Reference Number</th><th>Date</th><th>Payment Amount</th></tr>
+    <tr><td>Supportive measures (without fee or charge)</td><td></td><td>As reasonably available</td><td>$0.00</td></tr>
+    <tr><td>Mitigating essay (alleged per complaint; denied by university)</td><td></td><td></td><td>$0.00</td></tr>
+    <tr><td>Press statement</td><td></td><td>28/09/2026</td><td>$0.00</td></tr>
+    <tr class="sub"><td colspan="3" style="text-align:right">Total</td><td>$0.00</td></tr>
+  </table>
+  <div class="inv-h">Refunds</div>
+  <table class="inv">
+    <tr><th>Description</th><th>Reference Number</th><th>Date</th><th>Refund Amount</th></tr>
+    <tr><td>Withdrawal</td><td></td><td></td><td>Tuition is non-refundable</td></tr>
+    <tr class="sub"><td colspan="3" style="text-align:right">Total</td><td>$0.00</td></tr>
+  </table>
+  <table class="inv">
+    <tr><th style="width:40%">Outstanding Balance</th><td style="font-weight:600">Safety not included.</td></tr>
+  </table>
+  </div>
+</section>
+
+<section id="statement" class="sheet statement">
+  <div class="brand">
+    <div class="u">TACIT UNIVERSITY</div>
+    <div class="m">Qui tacet consentire videtur</div>
+    <div class="s">University Statements</div>
+  </div>
+  <h2 style="text-transform:none;letter-spacing:0">On the Continued Matter of the Discussion of Matters We Cannot Discuss</h2>
+  <p>TU supports every opportunity for a survivor’s “story” to be heard, especially off campus.</p>
+  <p>TU conducted a thorough process. The process lasted several months, or even years, which is how we know it was thorough. Our panel of faculty and staff, whose training was verified by the honour system, listened to testimony for multiple days. In a room arranged for the comfort of all parties, the complainant was given the opportunity to describe the incident as many times as practicable.</p>
+  <p>At its conclusion, the panel issued a range of sanctions. A range is a set of values between a minimum and a maximum. The university is proud of both ends.</p>
+  <p>No student was offered an essay as a sole consequence. The university’s lawyers have reviewed the word <i>sole</i> and stand by it.</p>
+  <p>The environment in question has been closed. Environments remain the university’s first priority.</p>
+  <p>Any suggestion that TU’s response was insufficient is itself insufficient. Criticism of the university harms survivors. Survivors are best supported by silence, which the university is pleased to model.</p>
+  <p>We take this extremely seriously, as defined in our Terms of Service.</p>
+  <p class="sig">Vice President for University Reputation,<br>on behalf of a designee, a dog, or a postage stamp</p>
+</section>
+
+<section id="survey" class="sheet">
+  <div class="brand">
+    <div class="u">TACIT UNIVERSITY</div>
+    <div class="m">Qui tacet consentire videtur</div>
+    <div class="s">Office of Civil Rights · Customer Experience</div>
+  </div>
+  <h2>Tell us how we did</h2>
+  <p>Your feedback helps us maintain our standards. All responses are sufficient.</p>
+  <form id="survey-form">
+    <fieldset><legend>1. How would you rate your experience of institutional accountability?</legend>
+      <label><input type="radio" name="q1"> 1: Sufficient</label>
+      <label><input type="radio" name="q1"> 2: Sufficient</label>
+      <label><input type="radio" name="q1"> 3: Sufficient</label>
+      <label><input type="radio" name="q1"> 4: Sufficient</label>
+      <label><input type="radio" name="q1"> 5: Sufficient</label>
+    </fieldset>
+    <fieldset><legend>2. How many times were you asked to describe the incident?</legend>
+      <label><input type="radio" name="q2"> Once</label>
+      <label><input type="radio" name="q2"> As many times as practicable</label>
+      <label><input type="radio" name="q2"> Hearings may exceed this number</label>
+      <label><input type="radio" name="q2"> I have not stopped</label>
+    </fieldset>
+    <fieldset><legend>3. How did you learn the outcome of your case?</legend>
+      <label><input type="radio" name="q3"> Official letter</label>
+      <label><input type="radio" name="q3"> A press statement</label>
+      <label><input type="radio" name="q3"> The news</label>
+      <label><input type="radio" name="q3"> My own lawsuit</label>
+      <label><input type="radio" name="q3"> The outcome cannot be disclosed to you</label>
+    </fieldset>
+    <fieldset><legend>4. Which supportive measures were you offered? (select all that apply, as reasonably available)</legend>
+      <label><input type="checkbox"> A workshop</label>
+      <label><input type="checkbox"> A hotline</label>
+      <label><input type="checkbox"> A fax number</label>
+      <label><input type="checkbox"> A range</label>
+      <label><input type="checkbox"> Your own dignity (BYO)</label>
+    </fieldset>
+    <fieldset><legend>5. Was the process fair?</legend>
+      <label><input type="radio" name="q5"> Yes</label>
+      <label><input type="radio" name="q5"> More likely than not</label>
+      <label><input type="radio" name="q5"> Fair describes the procedure, not the outcome</label>
+    </fieldset>
+    <fieldset><legend>6. Would you recommend Tacit University to your daughter?</legend>
+      <label><input type="radio" name="q6" checked> Yes</label>
+      <label><input type="radio" name="q6"> No</label>
+      <p class="note">No response will be recorded as Yes.</p>
+    </fieldset>
+    <fieldset><legend>7. Tell your “story.” (optional)</legend>
+      <textarea readonly rows="3" aria-readonly="true">Your story has been received and heard. No further detail is required.</textarea>
+      <p class="note">This field has been completed on your behalf.</p>
+    </fieldset>
+    <fieldset>
+      <label><input type="checkbox" checked> I agree that my response may be used to improve the admissions experience.</label>
+    </fieldset>
+    <p class="center"><button id="submit" type="submit">Submit</button></p>
+  </form>
+  <div id="receipt" class="receipt" hidden aria-live="polite">
+    <pre></pre>
+    <div class="stamp" aria-hidden="true">SAFETY NOT INCLUDED</div>
+  </div>
+</section>
+
+<section id="receipts" class="sheet">
+  <h2>05 Receipts issued</h2>
+  <div class="counters">
+    <div>Receipts issued<b id="c-issued">526</b></div>
+    <div>Still legible<b id="c-legible">526</b></div>
+    <div>Remedies issued<b>0</b></div>
+  </div>
+  <div id="field" role="img" aria-label="A field of receipts. The printed text fades over time; the red stamps remain."></div>
+</section>
+
+</div>
+
+<footer class="sheet">
+  <h2>About this work</h2>
+  <p>This work is entered as satire, but it identifies the madness of the ways campuses across North America respond to survivors.</p>
+  <p>Tacit University does not exist. Its motto, <i>Qui tacet consentire videtur</i>, is an old legal maxim: “whoever is silent is taken to consent.” Affirmative-consent standards were written to reject exactly that idea. The magnifier reveals the fine print in Tacit University’s sexual misconduct policy.</p>
+  <p><b>Privacy:</b> This site does not collect personal information.</p>
+  <p>If you or someone you know needs support after sexual violence:<br>
+  In an emergency, call 911.<br>
+  In Canada: <a href="https://endingviolencecanada.org/sexual-assault-centres-crisis-lines-and-support-services/">endingviolencecanada.org</a><br>
+  In the United States: the RAINN National Sexual Assault Hotline, 1-800-656-4673, or <a href="https://rainn.org">rainn.org</a>.</p>
+  <p class="mono" style="font-size:12px;color:var(--muted)">© Tacit University 1972–2026 · Controlled if viewed online. Uncontrolled if printed.</p>
+</footer>
+
+</main>
+
+<script>
+const LAUNCH = '2026-10-01';   // date the 526 baseline receipts are issued; set to go-live date
+const BASELINE = 526;
+const FADE_DAYS = 122;         // one term, about four months
+const COUNTER_URL = '';        // Stage 2: URL of the shared counter; empty = local mode
+
+const TERMS = [
+["By enrolling, you agree to a safe, inclusive, and respectful environment for learning, living, and working.",
+ "Environment means location, event, or circumstances, including frat houses, the university controls, where available, and if known."],
+["We are committed. We are committed to preventing. We are committed to responding. We are committed to remedying. We are committed to protecting you.",
+ "Commitments are non-substantial and may be delegated to a designee, a dog, or a postage stamp. The university reserves the right to consult the president of a fraternity before any process begins."],
+["Your health is of utmost importance. Your safety is of utmost importance. Your dignity is of utmost importance. Your integrity is of utmost importance.",
+ "Sexual assault is either a form of sex-based discrimination or she was asking for it. Importance is not determined by the number of night terrors experienced by the survivor or flashbacks."],
+["Every concern will be taken seriously. Every process will be prompt. Every process will be fair. Every process will be impartial. Every person will be treated with dignity. Every person will be treated with courtesy.",
+ "Seriously means a systematic inquiry following a formal complaint, if such an option is available. Prompt, fair, and impartial describe the applicable procedures, not their outcome. Dignity will not be extended automatically, though you may bring your own. Your report should state who was involved, what happened, when, and where and then you will be required to describe the incident to as many representatives as practicable; hearings may exceed this number."],
+["You have rights. You have the right to be heard. You have the right to be free from pressure. You have the right to an equal education. You have the right to be safe. You have the right to be protected. You have the right to a process that is fair, impartial, and prompt.",
+ "Your rights do not constitute a guarantee. The university takes reasonable measures to protect privacy but cannot and does not guarantee it, except in rare circumstances, in appropriate circumstances, or where the matter is in litigation. A process is available to the complainant and to the respondent equally. You may appeal at least once."],
+["We are a community. We are safe. We are inclusive. We are respectful. We are learning. We are living. We are working. We are committed.",
+ "Community membership ends when the student withdraws or is withdrawn. Records will be retained or disposed of in accordance with record retention."],
+["Your wellbeing is our highest priority. Nothing is of greater importance to us than your health and safety. Nothing is of greater importance to us than your dignity. Nothing is of greater importance to us than your rights.",
+ "Harm is defined as prohibited conduct following a finding of responsibility. Drug use, voluntary or involuntary, will be held against you. A sanction may follow."],
+["We are committed to an environment free from pressure, free from bias, free from harm. We are committed to you, seriously, promptly, fairly, respectfully.",
+ "Wellbeing is offered through humiliating press statements. Supportive measures are not non-punitive. You are strongly encouraged to “tell your story.” You are not encouraged to report to law enforcement. You may pursue either or neither."],
+["Thank you for enrolling. Your tuition has been received.",
+ "Tuition is non-refundable. Safety is not included. This document is controlled if viewed online and uncontrolled if printed. By scrolling further, you agree."]
+];
+
+const $ = s => document.querySelector(s);
+const pad2 = n => String(n).padStart(2,'0');
+const fmt = d => pad2(d.getDate())+'/'+pad2(d.getMonth()+1)+'/'+d.getFullYear();
+const iso = d => d.getFullYear()+'-'+pad2(d.getMonth()+1)+'-'+pad2(d.getDate());
+
+// Terms and lens
+const clauses = $('#clauses');
+TERMS.forEach(([p,f],i)=>{
+  const el = document.createElement('p');
+  el.className = 'clause'; el.dataset.i = i;
+  el.innerHTML = '<span class="n">'+(i+1)+'.</span> '+p+'<span class="sr-only"> Fine print: '+f+'</span>';
+  clauses.appendChild(el);
+});
+const lens = $('#lens'), lt = $('#lens-text'), tb = $('#terms-body');
+const R = Math.min(340, Math.round(window.innerWidth*0.86)), PAD = Math.round(R*0.18);
+lens.style.width = lens.style.height = R+'px';
+let cur = -1, off = 0, still = 0, last = performance.now();
+function layout(){ const h = lt.offsetHeight, vis = R-2*PAD; lt.style.top = (h<=vis ? (R-h)/2 : PAD-off)+'px'; }
+function setClause(i){ if(i===cur) return; cur = i; lt.textContent = TERMS[i][1]; off = 0; still = 0; layout(); }
+function hideLens(){ lens.hidden = true; cur = -1; }
+function showAt(x,y,cl){
+  lens.hidden = false; setClause(+cl.dataset.i);
+  const w = tb.clientWidth;
+  lens.style.left = Math.min(Math.max(x-R/2,-R/3), w-2*R/3)+'px';
+  lens.style.top = (y-R/2)+'px';
+}
+tb.addEventListener('pointermove', e=>{
+  if(e.pointerType==='touch') return;
+  const cl = e.target.closest('.clause'); still = 0;
+  if(!cl){ hideLens(); return; }
+  const r = tb.getBoundingClientRect(); showAt(e.clientX-r.left, e.clientY-r.top, cl);
+});
+tb.addEventListener('pointerleave', e=>{ if(e.pointerType!=='touch') hideLens(); });
+tb.addEventListener('pointerdown', e=>{
+  if(e.pointerType!=='touch') return;
+  const cl = e.target.closest('.clause');
+  if(!cl){ hideLens(); return; }
+  const r = tb.getBoundingClientRect(); showAt(e.clientX-r.left, e.clientY-r.top, cl);
+});
+(function tick(now){
+  const dt = (now-last)/1000; last = now;
+  if(cur>=0){
+    still += dt; const h = lt.offsetHeight, vis = R-2*PAD;
+    if(h>vis && still>0.8){ off += dt*16; if(off>h-vis+40){ off = -20; still = 0; } layout(); }
+  }
+  requestAnimationFrame(tick);
+})(performance.now());
+
+// Clickwrap gate
+const agree = $('#agree'), gated = $('#gated');
+let agreed = sessionStorage.getItem('tacit-agreed')==='1';
+function unlock(){ gated.hidden = false; agree.textContent = 'Agreed'; agree.disabled = true; }
+if(agreed) unlock();
+new IntersectionObserver(es=>{ if(!agreed && es.some(e=>e.isIntersecting)) agree.disabled = false; }).observe($('#terms-end'));
+agree.addEventListener('click', ()=>{ agreed = true; sessionStorage.setItem('tacit-agreed','1'); unlock(); renderField(); location.hash = '#invoice'; });
+document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click', e=>{
+  if(gated.hidden && a.getAttribute('href')!=='#terms'){ e.preventDefault(); $('#terms').scrollIntoView({behavior:'smooth'}); }
+}));
+
+// Receipts
+const W = 29, rule = '-'.repeat(W);
+const row = (l,r) => l+' '.repeat(Math.max(1,W-l.length-r.length))+r;
+const ctr = s => ' '.repeat(Math.max(0,Math.floor((W-s.length)/2)))+s;
+function receiptLines(n, date){
+  return [ctr('TACIT UNIVERSITY'), ctr('Qui tacet consentire videtur'), ctr('Office of Civil Rights'), rule,
+    row('RECEIPT NO.', String(n).padStart(6,'0')), row('ISSUED', date), rule,
+    'RESPONSE RECEIVED', row('STATUS','SUFFICIENT'), row('ACTION REQUIRED','NONE'), row('REMEDY','PENDING'), rule,
+    'TUITION RECEIVED.', '', '', '', rule,
+    'CUSTOMER SIGNATURE', '', '', '_'.repeat(W), 'Silence will be recorded', 'as consent.'];
+}
+const mine = () => JSON.parse(localStorage.getItem('tacit-mine')||'[]');
+
+async function issueNumber(){
+  const d = iso(new Date());
+  let count;
+  if(COUNTER_URL){
+    try{ const r = await fetch(COUNTER_URL,{method:'POST'}); count = (await r.json()).count; }catch(e){}
+  }
+  const m = mine();
+  if(count===undefined) count = m.length+1;
+  m.push({d}); localStorage.setItem('tacit-mine', JSON.stringify(m));
+  return BASELINE+count;
+}
+async function loadDays(){
+  if(COUNTER_URL){ try{ const r = await fetch(COUNTER_URL); return (await r.json()).days||{}; }catch(e){} }
+  const days = {}; mine().forEach(x=>{ days[x.d] = (days[x.d]||0)+1; }); return days;
+}
+async function renderField(){
+  const days = await loadDays(), mc = {};
+  mine().forEach(x=>{ mc[x.d] = (mc[x.d]||0)+1; });
+  const today = new Date(); today.setHours(0,0,0,0);
+  const items = [];
+  Object.keys(days).sort().reverse().forEach(d=>{ for(let k=0;k<days[d];k++) items.push({d, own:k<(mc[d]||0)}); });
+  for(let k=0;k<BASELINE;k++) items.push({d:LAUNCH});
+  let legible = 0; const out = [];
+  for(const it of items){
+    const age = (today-new Date(it.d+'T00:00:00'))/864e5;
+    const a = Math.max(0, Math.min(1, 1-age/FADE_DAYS));
+    if(a>0.35) legible++;
+    out.push('<div class="tile'+(it.own?' mine':'')+'" style="--a:'+a.toFixed(2)+'"><i></i><i></i><i></i><i></i><b></b></div>');
+  }
+  $('#field').innerHTML = out.join('');
+  $('#c-issued').textContent = items.length.toLocaleString();
+  $('#c-legible').textContent = legible.toLocaleString();
+  $('#nav-count').textContent = items.length.toLocaleString();
+}
+function printReceipt(n){
+  const box = $('#receipt'), pre = box.querySelector('pre'), st = box.querySelector('.stamp');
+  box.hidden = false; pre.textContent = ''; st.classList.remove('on');
+  box.scrollIntoView({behavior:'smooth', block:'center'});
+  const lines = receiptLines(n, fmt(new Date())); let i = 0;
+  (function next(){
+    if(i<lines.length){ pre.textContent += lines[i++]+'\n'; setTimeout(next,70); return; }
+    setTimeout(()=>{
+      st.style.setProperty('--r', (-10-Math.random()*8).toFixed(1)+'deg');
+      st.style.setProperty('--x', Math.round(Math.random()*16-8)+'px');
+      st.classList.add('on'); renderField();
+    }, 450);
+  })();
+}
+$('#survey-form').addEventListener('submit', async e=>{
+  e.preventDefault();
+  const b = $('#submit'); b.disabled = true;
+  const n = await issueNumber(); printReceipt(n);
+  setTimeout(()=>{ b.disabled = false; }, 2500);
+});
+renderField();
+</script>
+</body>
+</html>
