@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tuition received. Safety not included.</title>
 <!--
-  Tuition received. Safety not included. 2026.
+  Tuition received. Safety not included.
+  2026.
   Tacit University is fictional. The fine print recomposes vocabulary from a
   university sexual misconduct policy, interwoven with the artist's interventions.
   Satire. Stores no personal information: receipts are kept only in the visitor's own browser.
@@ -119,7 +120,6 @@ footer a{color:var(--ink)}
     <tr><td>2024 Fall</td><td>WITHDRAWN</td><td>PENDING LEGAL PROCESS</td></tr>
   </table>
   <div class="inv-h">Tuition</div>
-<div class="inv-h">Tuition</div>
   <table class="inv">
     <tr><th>Description</th><th>Course ID</th><th>Credits</th><th>Tuition</th><th>Other Fees</th><th>Total</th></tr>
     <tr><td>Telling Your Story</td><td>TYS 101</td><td>3</td><td>$526.00</td><td>$0.00</td><td>$526.00</td></tr>
@@ -191,37 +191,31 @@ footer a{color:var(--ink)}
       <label><input type="radio" name="q1"> 4: Sufficient</label>
       <label><input type="radio" name="q1"> 5: Sufficient</label>
     </fieldset>
-    <fieldset><legend>2. How many times were you asked to describe the incident?</legend>
-      <label><input type="radio" name="q2"> Once</label>
-      <label><input type="radio" name="q2"> As many times as practicable</label>
-      <label><input type="radio" name="q2"> Hearings may exceed this number</label>
-      <label><input type="radio" name="q2"> I have not stopped</label>
+    <fieldset><legend>2. How promptly were your complaints handled?</legend>
+      <label><input type="radio" name="q2"> Betimes</label>
+      <label><input type="radio" name="q2"> Anon</label>
+      <label><input type="radio" name="q2"> Within a twelvemonth</label>
+      <label><input type="radio" name="q2"> A lustrum</label>
+      <label><input type="radio" name="q2"> An aeon</label>
+      <label><input type="radio" name="q2"> Time out of mind</label>
     </fieldset>
-    <fieldset><legend>3. How did you learn the outcome of your case?</legend>
-      <label><input type="radio" name="q3"> Official letter</label>
-      <label><input type="radio" name="q3"> A press statement</label>
-      <label><input type="radio" name="q3"> The news</label>
-      <label><input type="radio" name="q3"> My own lawsuit</label>
-      <label><input type="radio" name="q3"> The outcome cannot be disclosed to you</label>
+    <fieldset><legend>3. Which supportive measures were you offered? (select all that apply, as reasonably available)</legend>
+      <label><input type="checkbox"> A mattress to carry with you everywhere</label>
+      <label><input type="checkbox"> A scroll</label>
+      <label><input type="checkbox"> A map of the city and a red rubber stamp</label>
+      <label><input type="checkbox"> Judith’s sword</label>
     </fieldset>
-    <fieldset><legend>4. Which supportive measures were you offered? (select all that apply, as reasonably available)</legend>
-      <label><input type="checkbox"> A workshop</label>
-      <label><input type="checkbox"> A hotline</label>
-      <label><input type="checkbox"> A fax number</label>
-      <label><input type="checkbox"> A range</label>
-      <label><input type="checkbox"> Your own dignity (BYO)</label>
+    <fieldset><legend>4. Was the process fair?</legend>
+      <label><input type="radio" name="q5"> Yes, to the admin</label>
+      <label><input type="radio" name="q5"> Yes, to the frats</label>
+      <label><input type="radio" name="q5"> Not to the 52.6% of students who are gendered female</label>
     </fieldset>
-    <fieldset><legend>5. Was the process fair?</legend>
-      <label><input type="radio" name="q5"> Yes</label>
-      <label><input type="radio" name="q5"> More likely than not</label>
-      <label><input type="radio" name="q5"> Fair describes the procedure, not the outcome</label>
-    </fieldset>
-    <fieldset><legend>6. Would you recommend Tacit University to your daughter?</legend>
+    <fieldset><legend>5. Would you recommend Tacit University to your daughter?</legend>
       <label><input type="radio" name="q6" id="q6yes" checked> Yes</label>
       <label><input type="radio" name="q6" id="q6no"> No</label>
       <p class="note">No response will be recorded as Yes.</p>
     </fieldset>
-    <fieldset><legend>7. Tell your “story.” (optional)</legend>
+    <fieldset><legend>6. Tell your “story.” (optional)</legend>
       <textarea readonly rows="3" aria-readonly="true">Your story has been received and heard. No further detail is required.</textarea>
       <p class="note">This field has been completed on your behalf.</p>
     </fieldset>
@@ -252,6 +246,7 @@ footer a{color:var(--ink)}
   <h2>About this work</h2>
   <p>This work is entered as satire, but it identifies the madness of the ways campuses across North America respond to survivors.</p>
   <p>Tacit University does not exist. Its motto, <i>Qui tacet consentire videtur</i>, is an old legal maxim: “whoever is silent is taken to consent.” Affirmative-consent standards were written to reject exactly that idea. The magnifier reveals the fine print in Tacit University’s sexual misconduct policy.</p>
+  <p>The survey’s “supportive measures” cite feminist artists who answered sexual violence and misogyny with their own work: Emma Sulkowicz’s <i>Mattress Performance (Carry That Weight)</i> (2014–15), Carolee Schneemann’s <i>Interior Scroll</i> (1975), Suzanne Lacy’s <i>Three Weeks in May</i> (1977), and Artemisia Gentileschi’s <i>Judith Slaying Holofernes</i> (c. 1612–13).</p>
   <p><b>Privacy:</b> This site does not collect personal information.</p>
   <p>If you or someone you know needs support after sexual violence:<br>
   In an emergency, call 911.<br>
@@ -410,7 +405,7 @@ $('#survey-form').addEventListener('submit', async e=>{
   setTimeout(()=>{ b.disabled = false; }, 2500);
 });
 
-// Q6: No cannot be entered
+// Q5: No cannot be entered
 $('#q6no').addEventListener('change', ()=>{
   setTimeout(()=>{ $('#q6yes').checked = true; }, 250);
 });
