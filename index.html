@@ -9,7 +9,7 @@
   Monique Tschofen, 2026.
   Tacit University is fictional. The fine print recomposes vocabulary from a
   university sexual misconduct policy, interwoven with the artist's interventions.
-  Satire. Stores no personal information.
+  Satire. Stores no personal information: receipts are kept only in the visitor's own browser.
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -217,8 +217,8 @@ footer a{color:var(--ink)}
       <label><input type="radio" name="q5"> Fair describes the procedure, not the outcome</label>
     </fieldset>
     <fieldset><legend>6. Would you recommend Tacit University to your daughter?</legend>
-      <label><input type="radio" name="q6" checked> Yes</label>
-      <label><input type="radio" name="q6"> No</label>
+      <label><input type="radio" name="q6" id="q6yes" checked> Yes</label>
+      <label><input type="radio" name="q6" id="q6no"> No</label>
       <p class="note">No response will be recorded as Yes.</p>
     </fieldset>
     <fieldset><legend>7. Tell your “story.” (optional)</legend>
@@ -266,7 +266,6 @@ footer a{color:var(--ink)}
 const LAUNCH = '2026-10-01';   // date the 526 baseline receipts are issued; set to go-live date
 const BASELINE = 526;
 const FADE_DAYS = 122;         // one term, about four months
-const COUNTER_URL = '';        // Stage 2: URL of the shared counter; empty = local mode
 
 const TERMS = [
 ["By enrolling, you agree to a safe, inclusive, and respectful environment for learning, living, and working.",
@@ -348,7 +347,7 @@ document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click', e=>{
   if(gated.hidden && a.getAttribute('href')!=='#terms'){ e.preventDefault(); $('#terms').scrollIntoView({behavior:'smooth'}); }
 }));
 
-// Receipts
+// Receipts (kept only in this visitor's browser)
 const W = 29, rule = '-'.repeat(W);
 const row = (l,r) => l+' '.repeat(Math.max(1,W-l.length-r.length))+r;
 const ctr = s => ' '.repeat(Math.max(0,Math.floor((W-s.length)/2)))+s;
@@ -362,26 +361,21 @@ function receiptLines(n, date){
 const mine = () => JSON.parse(localStorage.getItem('tacit-mine')||'[]');
 
 async function issueNumber(){
-  const d = iso(new Date());
-  let count;
-  if(COUNTER_URL){
-    try{ const r = await fetch(COUNTER_URL,{method:'POST'}); count = (await r.json()).count; }catch(e){}
-  }
   const m = mine();
-  if(count===undefined) count = m.length+1;
-  m.push({d}); localStorage.setItem('tacit-mine', JSON.stringify(m));
-  return BASELINE+count;
+  m.push({d: iso(new Date())});
+  localStorage.setItem('tacit-mine', JSON.stringify(m));
+  return BASELINE + m.length;
 }
 async function loadDays(){
-  if(COUNTER_URL){ try{ const r = await fetch(COUNTER_URL); return (await r.json()).days||{}; }catch(e){} }
-  const days = {}; mine().forEach(x=>{ days[x.d] = (days[x.d]||0)+1; }); return days;
+  const days = {};
+  mine().forEach(x=>{ days[x.d] = (days[x.d]||0)+1; });
+  return days;
 }
 async function renderField(){
-  const days = await loadDays(), mc = {};
-  mine().forEach(x=>{ mc[x.d] = (mc[x.d]||0)+1; });
+  const days = await loadDays();
   const today = new Date(); today.setHours(0,0,0,0);
   const items = [];
-  Object.keys(days).sort().reverse().forEach(d=>{ for(let k=0;k<days[d];k++) items.push({d, own:k<(mc[d]||0)}); });
+  Object.keys(days).sort().reverse().forEach(d=>{ for(let k=0;k<days[d];k++) items.push({d, own:true}); });
   for(let k=0;k<BASELINE;k++) items.push({d:LAUNCH});
   let legible = 0; const out = [];
   for(const it of items){
@@ -415,6 +409,12 @@ $('#survey-form').addEventListener('submit', async e=>{
   const n = await issueNumber(); printReceipt(n);
   setTimeout(()=>{ b.disabled = false; }, 2500);
 });
+
+// Q6: No cannot be entered
+$('#q6no').addEventListener('change', ()=>{
+  setTimeout(()=>{ $('#q6yes').checked = true; }, 250);
+});
+
 renderField();
 </script>
 </body>
