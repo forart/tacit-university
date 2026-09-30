@@ -65,7 +65,8 @@ legend{font-weight:600;padding:0}
 label{display:block;margin:.2rem 0}
 textarea{width:100%;font:15px 'IBM Plex Mono',monospace;background:#efece5;color:var(--muted);border:1px solid var(--rule);padding:.6rem;resize:none}
 .note{font-size:15px;color:var(--muted);font-style:italic}
-.receipt{width:300px;margin:2rem auto 0;background:var(--paper);border:1px solid var(--rule);padding:16px 14px}
+#receipt-view{background:transparent;border:0;padding:1rem 0}
+.receipt{width:300px;margin:0 auto;background:var(--paper);border:1px solid var(--rule);padding:16px 14px}
 .rc-head{text-align:center;margin-bottom:8px}
 .rc-head .u{font:500 21px/1.2 'EB Garamond',Georgia,serif}
 .rc-head .m{font:italic 14px 'EB Garamond',Georgia,serif;color:var(--muted)}
@@ -73,6 +74,7 @@ textarea{width:100%;font:15px 'IBM Plex Mono',monospace;background:#efece5;color
 .receipt pre{margin:0;font:13px/20px 'IBM Plex Mono',monospace;min-height:400px}
 .stamp{position:absolute;left:50%;top:212px;border:3px solid var(--red);outline:1px solid var(--red);outline-offset:3px;color:var(--red);font:600 17px 'IBM Plex Mono',monospace;letter-spacing:.08em;padding:5px 12px;white-space:nowrap;opacity:0;transform:translateX(calc(-50% + var(--x,0px))) rotate(var(--r,-14deg)) scale(1.4);transition:transform .12s ease-in,opacity .12s;mix-blend-mode:multiply}
 .stamp.on{opacity:.88;transform:translateX(calc(-50% + var(--x,0px))) rotate(var(--r,-14deg)) scale(1)}
+#filing{margin-top:1.25rem}
 .counters{display:flex;gap:1rem;flex-wrap:wrap;font:13px 'IBM Plex Mono',monospace;margin-bottom:1rem}
 .counters div{flex:1;min-width:140px;border:1px solid var(--rule);padding:.6rem .8rem}
 .counters b{display:block;font-size:22px}
@@ -268,18 +270,22 @@ footer a{color:var(--ink)}
     </fieldset>
     <p class="center"><button id="submit" type="submit">Submit</button></p>
   </form>
-  <div id="receipt" class="receipt" hidden aria-live="polite">
+  <p class="back"><a href="#index">← Return to index</a></p>
+</section>
+
+<section id="receipt-view" class="view" data-view="receipt" aria-live="polite">
+  <div class="receipt">
     <div class="rc-head">
       <svg class="seal" width="64" height="64" viewBox="0 0 200 200" aria-hidden="true"><use href="#seal" xlink:href="#seal"/></svg>
       <div class="u">Tacit University</div>
       <div class="m">Qui tacet consentire videtur</div>
     </div>
     <div class="rc-body">
-      <pre></pre>
-      <div class="stamp" aria-hidden="true">SAFETY NOT INCLUDED</div>
+      <pre id="rc-pre"></pre>
+      <div id="rc-stamp" class="stamp" aria-hidden="true">SAFETY NOT INCLUDED</div>
     </div>
   </div>
-  <p class="back"><a href="#index">← Return to index</a></p>
+  <p id="filing" class="note center" hidden>Your receipt is being filed…</p>
 </section>
 
 <section id="receipts" class="sheet view" data-view="receipts">
@@ -313,7 +319,7 @@ footer a{color:var(--ink)}
 const LAUNCH = '2026-10-01';   // date the 526 baseline receipts are issued; set to go-live date
 const BASELINE = 526;
 const FADE_DAYS = 122;         // one term, about four months
-const RETURN_DELAY = 3500;     // ms after the stamp lands before returning to the index
+const FILE_DELAY = 3500;       // ms after the stamp lands before the receipt is filed
 
 const TERMS = [
 ["By enrolling, you agree to a safe, inclusive, and respectful environment for learning, living, and working.",
@@ -419,19 +425,15 @@ function receiptLines(n, date){
 }
 const mine = () => JSON.parse(localStorage.getItem('tacit-mine')||'[]');
 
-async function issueNumber(){
+function issueNumber(){
   const m = mine();
   m.push({d: iso(new Date())});
   localStorage.setItem('tacit-mine', JSON.stringify(m));
   return BASELINE + m.length;
 }
-async function loadDays(){
+function renderField(){
   const days = {};
   mine().forEach(x=>{ days[x.d] = (days[x.d]||0)+1; });
-  return days;
-}
-async function renderField(){
-  const days = await loadDays();
   const today = new Date(); today.setHours(0,0,0,0);
   const items = [];
   Object.keys(days).sort().reverse().forEach(d=>{ for(let k=0;k<days[d];k++) items.push({d, own:true}); });
@@ -448,26 +450,27 @@ async function renderField(){
   $('#c-legible').textContent = legible.toLocaleString();
   $('#nav-count').textContent = items.length.toLocaleString();
 }
-let returnTimer = null;
+
+let pending = null, printTimer = null, fileTimer = null;
 function printReceipt(n){
-  const box = $('#receipt'), pre = box.querySelector('pre'), st = box.querySelector('.stamp');
-  box.hidden = false; pre.textContent = ''; st.classList.remove('on');
-  box.scrollIntoView({behavior:'smooth', block:'center'});
+  const pre = $('#rc-pre'), st = $('#rc-stamp');
+  pre.textContent = ''; st.classList.remove('on'); $('#filing').hidden = true;
   const lines = receiptLines(n, fmt(new Date())); let i = 0;
   (function next(){
-    if(i<lines.length){ pre.textContent += lines[i++]+'\n'; setTimeout(next,70); return; }
-    setTimeout(()=>{
+    if(i<lines.length){ pre.textContent += lines[i++]+'\n'; printTimer = setTimeout(next,70); return; }
+    printTimer = setTimeout(()=>{
       st.style.setProperty('--r', (-10-Math.random()*8).toFixed(1)+'deg');
       st.style.setProperty('--x', Math.round(Math.random()*16-8)+'px');
-      st.classList.add('on'); renderField();
-      returnTimer = setTimeout(()=>{ location.hash = '#index'; }, RETURN_DELAY);
+      st.classList.add('on');
+      $('#filing').hidden = false;
+      fileTimer = setTimeout(()=>{ pending = null; location.hash = '#receipts'; }, FILE_DELAY);
     }, 450);
   })();
 }
-$('#survey-form').addEventListener('submit', async e=>{
+$('#survey-form').addEventListener('submit', e=>{
   e.preventDefault();
-  const b = $('#submit'); b.disabled = true;
-  const n = await issueNumber(); printReceipt(n);
+  pending = issueNumber();
+  location.hash = '#receipt';
 });
 
 // Q5: No cannot be entered
@@ -476,15 +479,17 @@ $('#q6no').addEventListener('change', ()=>{
 });
 
 // One view at a time
-const VIEWS = ['index','terms','invoice','statement','survey','receipts','about'];
+const VIEWS = ['index','terms','invoice','statement','survey','receipt','receipts','about'];
 function show(v){
   if(!VIEWS.includes(v)) v = 'index';
   let redirected = false;
   if(!agreed && !['index','terms','about'].includes(v)){ v = 'terms'; redirected = true; }
+  if(v==='receipt' && pending===null) v = 'survey';
+  clearTimeout(printTimer); clearTimeout(fileTimer);
   document.querySelectorAll('.view').forEach(el=>el.classList.toggle('active', el.dataset.view===v));
   $('#gate-note').hidden = !redirected;
   hideLens();
-  if(v==='survey'){ clearTimeout(returnTimer); $('#receipt').hidden = true; $('#submit').disabled = false; }
+  if(v==='receipt') printReceipt(pending);
   if(v==='receipts') renderField();
   window.scrollTo(0,0);
 }
