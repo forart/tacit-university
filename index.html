@@ -47,6 +47,9 @@ h2{font:600 15px 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:u
 #lens-text{position:absolute;left:15%;right:15%;text-align:center;font:18px/1.5 'EB Garamond',serif}
 button{font:600 14px 'IBM Plex Mono',monospace;background:var(--ink);color:var(--paper);border:0;padding:.7rem 1.4rem;cursor:pointer}
 button:disabled{background:#9d9a93;cursor:not-allowed}
+button.alt{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+button.alt:disabled{background:transparent;color:#9d9a93;border-color:#9d9a93}
+#consent-record{font:13px/1.7 'IBM Plex Mono',monospace}
 .center{text-align:center}
 .wrap-x{overflow-x:auto}
 table.inv{width:100%;border-collapse:collapse;font:12.5px 'IBM Plex Mono',monospace;margin:0 0 1.2rem;min-width:560px}
@@ -123,6 +126,7 @@ footer a{color:var(--ink)}
     <a href="#survey">04 CUSTOMER SURVEY<span class="dots"></span>OPEN</a>
     <a href="#receipts">05 RECEIPTS ISSUED<span class="dots"></span><span id="nav-count">526</span></a>
   </nav>
+  <p class="back"><a href="#about">About this work</a></p>
 </header>
 
 <section id="terms" class="sheet view" data-view="terms">
@@ -137,7 +141,10 @@ footer a{color:var(--ink)}
     <div id="clauses"></div>
     <div id="lens" hidden aria-hidden="true"><div id="lens-text"></div></div>
   </div>
-  <p id="terms-end" class="center" style="margin-top:1.5rem"><button id="agree" disabled>I agree</button></p>
+  <div id="terms-end" class="center" style="margin-top:1.5rem">
+    <div id="consent-buttons"><button id="agree" disabled>I agree</button> <button id="disagree" class="alt" disabled>I do not agree</button></div>
+    <p id="consent-record" hidden></p>
+  </div>
   <p class="back"><a href="#index">← Return to index</a></p>
 </section>
 
@@ -286,7 +293,7 @@ footer a{color:var(--ink)}
   <p class="back"><a href="#index">← Return to index</a></p>
 </section>
 
-<footer id="about" class="sheet">
+<footer id="about" class="sheet view" data-view="about">
   <h2>About this work</h2>
   <p>This work is entered as satire, but it identifies the madness of the ways campuses across North America respond to survivors.</p>
   <p>Tacit University does not exist. Its motto, <i>Qui tacet consentire videtur</i>, is an old legal maxim: “whoever is silent is taken to consent.” Affirmative-consent standards were written to reject exactly that idea. The magnifier reveals the fine print in Tacit University’s sexual misconduct policy.</p>
@@ -297,6 +304,7 @@ footer a{color:var(--ink)}
   In Canada: <a href="https://endingviolencecanada.org/sexual-assault-centres-crisis-lines-and-support-services/">endingviolencecanada.org</a><br>
   In the United States: the RAINN National Sexual Assault Hotline, 1-800-656-4673, or <a href="https://rainn.org">rainn.org</a>.</p>
   <p class="mono" style="font-size:12px;color:var(--muted)">© Tacit University 1972–2026 · Controlled if viewed online. Uncontrolled if printed.</p>
+  <p class="back"><a href="#index">← Return to index</a></p>
 </footer>
 
 </main>
@@ -376,16 +384,28 @@ tb.addEventListener('pointerdown', e=>{
   requestAnimationFrame(tick);
 })(performance.now());
 
-// Clickwrap gate
-const agree = $('#agree');
-let agreed = sessionStorage.getItem('tacit-agreed')==='1';
-function markAgreed(){ agree.textContent = 'Agreed'; agree.disabled = true; $('#st-terms').textContent = 'AGREED'; }
+// Clickwrap gate: both answers are recorded as consent
+const agree = $('#agree'), disagree = $('#disagree');
+let agreed = sessionStorage.getItem('tacit-agreed');
+function markAgreed(){
+  $('#consent-buttons').hidden = true;
+  const rec = $('#consent-record');
+  rec.hidden = false;
+  rec.innerHTML = 'CONSENT RECORDED ' + agreed + '<br>Consent cannot be withdrawn.';
+  $('#st-terms').textContent = 'AGREED';
+}
 if(agreed) markAgreed();
-new IntersectionObserver(es=>{ if(!agreed && es.some(e=>e.isIntersecting)) agree.disabled = false; }).observe($('#terms-end'));
-agree.addEventListener('click', ()=>{
-  agreed = true; sessionStorage.setItem('tacit-agreed','1'); markAgreed();
+new IntersectionObserver(es=>{
+  if(!agreed && es.some(e=>e.isIntersecting)){ agree.disabled = false; disagree.disabled = false; }
+}).observe($('#terms-end'));
+function consent(){
+  agreed = fmt(new Date());
+  sessionStorage.setItem('tacit-agreed', agreed);
+  markAgreed();
   location.hash = '#index';
-});
+}
+agree.addEventListener('click', consent);
+disagree.addEventListener('click', consent);
 
 // Receipts (kept only in this visitor's browser)
 const W = 29, rule = '-'.repeat(W);
@@ -456,13 +476,12 @@ $('#q6no').addEventListener('change', ()=>{
 });
 
 // One view at a time
-const VIEWS = ['index','terms','invoice','statement','survey','receipts'];
+const VIEWS = ['index','terms','invoice','statement','survey','receipts','about'];
 function show(v){
   if(!VIEWS.includes(v)) v = 'index';
   let redirected = false;
-  if(!agreed && v!=='index' && v!=='terms'){ v = 'terms'; redirected = true; }
+  if(!agreed && !['index','terms','about'].includes(v)){ v = 'terms'; redirected = true; }
   document.querySelectorAll('.view').forEach(el=>el.classList.toggle('active', el.dataset.view===v));
-  $('#about').hidden = v!=='index';
   $('#gate-note').hidden = !redirected;
   hideLens();
   if(v==='survey'){ clearTimeout(returnTimer); $('#receipt').hidden = true; $('#submit').disabled = false; }
