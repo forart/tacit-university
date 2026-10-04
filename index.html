@@ -8,7 +8,6 @@
   Tacit University is fictional. The fine print recomposes vocabulary from a
   university sexual misconduct policy, interwoven with the artist's interventions.
   Satire. Stores no personal information. 2026.
-
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,7 +28,9 @@ body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 'EB Garamond',
 .brand .s{font:13px 'IBM Plex Mono',monospace;color:var(--muted);margin-top:4px}
 .lockup{display:flex;align-items:center;gap:14px;text-align:left}
 .lockup .seal{margin:0;flex:none}
-h1{font:600 20px/1.4 'IBM Plex Mono',monospace;text-align:center;margin:1rem 0}
+h1{font:600 20px/1.4 'IBM Plex Mono',monospace;text-align:center;margin:1rem 0 1.5rem}
+.title-stamp{display:inline-block;margin-top:.9rem;border:3px solid var(--red);outline:1px solid var(--red);outline-offset:3px;color:var(--red);padding:5px 14px;letter-spacing:.08em;mix-blend-mode:multiply;animation:thud .15s ease-in .6s both}
+@keyframes thud{from{opacity:0;transform:translateX(8px) rotate(-8deg) scale(1.4)}to{opacity:.9;transform:translateX(8px) rotate(-8deg) scale(1)}}
 h2{font:600 15px 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px dashed var(--ink);padding-bottom:.4rem;margin:0 0 1.25rem}
 .nav{max-width:420px;margin:0 auto;font:14px 'IBM Plex Mono',monospace}
 .nav a{display:flex;gap:6px;color:var(--ink);text-decoration:none;padding:3px 0}
@@ -108,7 +109,7 @@ footer a{color:var(--ink)}
     <div class="u">Tacit University</div>
     <div class="m">Qui tacet consentire videtur</div>
   </div>
-  <h1>TUITION RECEIVED.<br>SAFETY NOT INCLUDED.</h1>
+  <h1>TUITION RECEIVED.<br><span class="title-stamp">SAFETY NOT INCLUDED.</span></h1>
   <nav class="nav" aria-label="Sections">
     <a href="#terms">01 TERMS OF SERVICE<span class="dots"></span><span id="st-terms">REQ</span></a>
     <a href="#invoice">02 INVOICE<span class="dots"></span>OUTSTANDING</a>
@@ -203,7 +204,7 @@ footer a{color:var(--ink)}
   <p>The environment in question has been closed. Environments remain the university’s first priority.</p>
   <p>Any suggestion that TU’s response was insufficient is itself insufficient. Criticism of the university harms survivors. Survivors are best supported by silence, which the university is pleased to model.</p>
   <p>We take this extremely seriously, as defined in our Terms of Service.</p>
-  <p class="sig">Bob Wasonceafratboy, Vice President for University Reputation<br></p>
+  <p class="sig">Bob Wasonceafratboy, Vice President for University Reputation,<br></p>
   <p class="back"><a href="#index">← Return to index</a></p>
 </section>
 
